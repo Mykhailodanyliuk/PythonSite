@@ -1,0 +1,28 @@
+{% extends 'mainpage/layout.html' %}
+{% load static %}
+{% block title %}
+Реєстрація
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="box" method="post">
+                        <h1>Реєстрація</h1>
+                        <p class="text-muted"> Введіть логін та пароль</p>
+                        <input type="text" name="username" placeholder="Логін"/>
+                        <input type="password" name="password" placeholder="Пароль"/>
+                        <input type="submit" value="Реєстрація"/>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<link rel="stylesheet" href="{% static 'mainpage/css/login.css' %}">
+{% endblock %}
