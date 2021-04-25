@@ -17,18 +17,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <div sec:authorize="isAuthenticated()">
-                    <a class="btn btn-outline-success me-2" href="/addProduct">Добавити товар</a>
-                </div>
-                <a class="btn btn-outline-success me-2" href="{% url 'registration' %}">Реєстрація</a>
-                <a class="btn btn-outline-success me-2" href="{% url 'login' %}">Вхід</a>
 
                 {% if request.user.is_authenticated %}
                 <div  class="nav-item">
                     <form  method="post">
-                        <input class="btn btn-outline-success me-2" type="submit" value="Вийти"/>
+                        <a class="btn btn-outline-success me-2" href="{% url 'user_logout' %}" >Вийти</a>
+                        <a class="btn btn-outline-success me-2">Добавити товар</a>
+                        <a class="btn btn-danger" >{{ user.username }}</a>
                     </form>
                 </div>
+                {% else %}
+                    <a class="btn btn-outline-success me-2" href="{% url 'registration' %}">Реєстрація</a>
+                    <a class="btn btn-outline-success me-2" href="{% url 'user_login' %}">Вхід</a>
                 {% endif %}
 
 
@@ -52,11 +52,6 @@
     </div>
 </div>
 
-
-
-<div sec:authorize="isAuthenticated()">
-    <a href="/addProduct">Добавити товар</a>
-</div>
 
 <link rel="stylesheet" href="{% static 'mainpage/css/mainpage.css' %}">
 
