@@ -22,7 +22,7 @@
                 <div  class="nav-item">
                     <form  method="post">
                         <a class="btn btn-outline-success me-2" href="{% url 'user_logout' %}" >Вийти</a>
-                        <a class="btn btn-outline-success me-2">Добавити товар</a>
+                        <a class="btn btn-outline-success me-2" href="{% url 'createproduct' %}">Добавити товар</a>
                         <a class="btn btn-danger" >{{ user.username }}</a>
                     </form>
                 </div>

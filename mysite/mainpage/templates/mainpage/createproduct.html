@@ -1,0 +1,32 @@
+{% extends 'mainpage/layout.html' %}
+{% load static %}
+{% block title %}
+Вхід
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="box" method="post" >
+                        {% csrf_token %}
+<!--                        {{form.name_product}}-->
+<!--                        {{form.price_product}}-->
+<!--                        {{form.about_product}}-->
+<!--                        {{form.date}}-->
+                        {{form.as_p}}
+<!--                        <input type="text" placeholder="Назва" value="{{form.name_product}}">-->
+<!--                        <input type="text" placeholder="Ціна" >-->
+<!--                        <textarea  placeholder="Опис"></textarea>-->
+<!--                        <input type="date" value="Дата">-->
+                        <input type="submit" value="Добавити товар">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="{% static 'mainpage/css/login.css' %}">
+{% endblock %}

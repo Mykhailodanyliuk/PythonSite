@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Products
 from django.http import HttpResponse
+from .forms import ProductsForm
 from .forms import UserRegisterForm,UserLoginForm
 from django.contrib import messages
 from django.contrib.auth import login,logout
@@ -40,3 +41,14 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('mainpage')
+
+def createproduct(request):
+    if request.method == 'POST':
+        form = ProductsForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('mainpage')
+    else:
+        form = ProductsForm()
+    data = {'form': form}
+    return render(request,'mainpage/createproduct.html',data)

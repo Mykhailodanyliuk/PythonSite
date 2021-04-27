@@ -1,7 +1,8 @@
-import re
+from .models import Products
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
+from django.forms import ModelForm,TextInput
 
 
 class UserRegisterForm(UserCreationForm):
@@ -18,3 +19,19 @@ class UserLoginForm(AuthenticationForm):
     username = forms.CharField(label="Ім'я користувача",
                                widget=forms.TextInput(attrs={'placeholder': "Ім'я користувача"}))
     password = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'}))
+
+class ProductsForm(ModelForm):
+    name_product = forms.CharField(label=False,widget=forms.TextInput(attrs={'placeholder': "Назва"}))
+    price_product = forms.IntegerField(label=False, widget=forms.NumberInput(attrs={'placeholder': "Ціна"}))
+    about_product = forms.CharField(label=False, widget=forms.Textarea(attrs={'placeholder': "Про товар"}))
+    date = forms.DateField(label=False, widget=forms.DateInput(attrs={'type' :"date" ,'placeholder': "Дата"}))
+    class Meta:
+        model = Products
+        fields = ['name_product','price_product','about_product','date']
+
+        # widgets = {
+        #     "name_product" : TextInput(attrs={
+        #         'type': 'text',
+        #         'placeholder': 'Назва'
+        #     })
+        # }
