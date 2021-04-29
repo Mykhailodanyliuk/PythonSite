@@ -32,7 +32,10 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request,user)
+            messages.success(request, "Ви увійшли")
             return redirect('mainpage')
+        else:
+            messages.error(request, 'Помилка входу')
     else:
         form = UserLoginForm
 

@@ -18,6 +18,16 @@
                         {{form.password1}}
                         {{form.password2}}
                         <input type="submit" value="Зареєструватися">
+                        {% if messages %}
+
+                            {% for message in messages %}
+                                {% if message.tags == 'error' %}
+                                    <div role="alert">
+                                        <h6>{{ message }}</h6>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     </form>
                 </div>
             </div>

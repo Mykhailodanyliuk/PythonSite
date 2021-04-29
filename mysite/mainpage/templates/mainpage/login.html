@@ -16,6 +16,16 @@
                         {{form.username}}
                         {{form.password}}
                         <input type="submit" value="Увійти">
+                    {% if messages %}
+
+                        {% for message in messages %}
+                            {% if message.tags == 'error' %}
+                                <div role="alert">
+                                    <h6>{{ message }}</h6>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </form>
 
             </div>

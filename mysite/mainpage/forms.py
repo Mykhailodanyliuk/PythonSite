@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm,TextInput
+from django.utils import timezone
 
 
 class UserRegisterForm(UserCreationForm):
@@ -24,10 +25,11 @@ class ProductsForm(ModelForm):
     name_product = forms.CharField(label=False,widget=forms.TextInput(attrs={'placeholder': "Назва"}))
     price_product = forms.IntegerField(label=False, widget=forms.NumberInput(attrs={'placeholder': "Ціна"}))
     about_product = forms.CharField(label=False, widget=forms.Textarea(attrs={'placeholder': "Про товар"}))
-    date = forms.DateField(label=False, widget=forms.DateInput(attrs={'type' :"date" ,'placeholder': "Дата"}))
+    # date = forms.DateField(label=False, widget=forms.DateInput(attrs={'type' :"date" ,'placeholder': "Дата"}))
+
     class Meta:
         model = Products
-        fields = ['name_product','price_product','about_product','date']
+        fields = ['name_product','price_product','about_product']
 
         # widgets = {
         #     "name_product" : TextInput(attrs={
