@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
@@ -6,7 +7,7 @@ class Products(models.Model):
     price_product = models.IntegerField('Ціна')
     about_product = models.TextField('Опис')
     date = models.DateTimeField('Дата добавлення', default=timezone.now)
-    # author = models.CharField('Автор')
+    # author = models.ForeignKey(User, null=True, blank=True,editable=False,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name_product
