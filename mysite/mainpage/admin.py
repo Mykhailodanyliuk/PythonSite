@@ -3,7 +3,7 @@ from  .models import Products
 # Register your models here.
 
 class ProductsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name_product', 'date')
+    list_display = ('id', 'name_product', 'date','about_product')
 
     def save_model(self, request, obj, form, change):
         if getattr(obj, 'author', None) is None:

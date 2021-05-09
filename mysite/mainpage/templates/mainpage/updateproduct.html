@@ -1,0 +1,24 @@
+{% extends 'mainpage/layout.html' %}
+{% load static %}
+{% block title %}
+Оновити товар
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="box" action="" method="post" >
+                        {% csrf_token %}
+                        {{form}}
+                        <input type="submit" value="Оновити товар">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="{% static 'mainpage/css/login.css' %}">
+{% endblock %}

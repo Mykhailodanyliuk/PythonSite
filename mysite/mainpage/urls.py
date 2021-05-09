@@ -10,5 +10,7 @@ urlpatterns = [
     path('user_login/',views.user_login,name='user_login'),
     path('user_logout/',views.user_logout,name='user_logout'),
     path('createproduct/',views.createproduct,name='createproduct'),
+    path('updateproduct/<str:pk>/',views.updateproduct,name='updateproduct'),
+    path('deleteproduct/<str:pk>/',views.deleteproduct,name='deleteproduct'),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.ico')))
 ]

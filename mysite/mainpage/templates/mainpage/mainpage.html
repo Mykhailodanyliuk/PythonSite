@@ -41,11 +41,13 @@
 
 <div class="container">
     <div class="row row-cols-4">
-        {% for i in first %}
+        {% for product in Products %}
         <div class="col">
             <div class="box">
-                <a>{{i.name_product}}</a><br>
-                <a>{{i.price_product}}$</a>
+                <a>{{product.name_product}}</a><br>
+                <a>{{product.price_product}}$</a><br>
+                <a href="{% url 'updateproduct' product.id %}">Оновити</a>
+                <a href="{% url 'deleteproduct' product.id %}">Видалити</a>
             </div>
         </div>
         {% endfor %}

@@ -1,0 +1,25 @@
+{% extends 'mainpage/layout.html' %}
+{% load static %}
+{% block title %}
+Видалити товар
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="box" action="{% url 'deleteproduct' item.id %}" method="post" >
+                        {% csrf_token %}
+                        <h5>Ви хочете видалити {{item}}?</h5>
+                        <a href="{% url 'mainpage' %}">Відмінити</a>
+                        <input type="submit" value="Видалити">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="{% static 'mainpage/css/login.css' %}">
+{% endblock %}

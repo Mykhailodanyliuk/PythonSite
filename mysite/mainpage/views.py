@@ -6,10 +6,11 @@ from .forms import UserRegisterForm,UserLoginForm
 from django.contrib import messages
 from django.contrib.auth import login,logout
 
+
 def mainpage(request):
     products = Products.objects.all()
     names=['dfgh','dfgh','dfcgvhb','ghj']
-    return render(request,'mainpage/mainpage.html',{'first':products})
+    return render(request,'mainpage/mainpage.html',{'Products':products})
 
 def registration(request):
     if request.method == 'POST':
@@ -55,3 +56,24 @@ def createproduct(request):
         form = ProductsForm()
     data = {'form': form}
     return render(request,'mainpage/createproduct.html',data)
+
+def updateproduct(request,pk):
+    product = Products.objects.get(id=pk)
+    form = ProductsForm(instance=product)
+    if request.method == 'POST':
+        form = ProductsForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form':form}
+    return render(request,'mainpage/updateproduct.html',context)
+
+def deleteproduct(request,pk):
+    product = Products.objects.get(id=pk)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('/')
+    context = {'item': product}
+    return render(request, 'mainpage/deleteproduct.html', context)
+
