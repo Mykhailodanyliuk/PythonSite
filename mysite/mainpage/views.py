@@ -47,15 +47,18 @@ def user_logout(request):
     return redirect('mainpage')
 
 def createproduct(request):
-    if request.method == 'POST':
-        form = ProductsForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('mainpage')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = ProductsForm(data=request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('mainpage')
+        else:
+            form = ProductsForm()
+        data = {'form': form}
+        return render(request,'mainpage/createproduct.html',data)
     else:
-        form = ProductsForm()
-    data = {'form': form}
-    return render(request,'mainpage/createproduct.html',data)
+        return redirect('registration')
 
 def updateproduct(request,pk):
     product = Products.objects.get(id=pk)
