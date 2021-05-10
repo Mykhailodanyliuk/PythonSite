@@ -63,7 +63,7 @@ def createproduct(request):
         return redirect('mainpage')
 
 def updateproduct(request,pk):
-    if request.user.is_authenticated:
+    if request.user.is_staff:
         product = Products.objects.get(id=pk)
         form = ProductsForm(instance=product)
         if request.method == 'POST':
@@ -78,7 +78,7 @@ def updateproduct(request,pk):
         return redirect('registration')
 
 def deleteproduct(request,pk):
-    if request.user.is_authenticated:
+    if request.user.is_staff:
         product = Products.objects.get(id=pk)
         if request.method == 'POST':
             product.delete()

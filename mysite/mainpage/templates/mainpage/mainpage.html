@@ -48,7 +48,7 @@
             <div class="box">
                 <a>{{product.name_product}}</a><br>
                 <a>{{product.price_product}}$</a><br>
-                {% if request.user.is_authenticated %}
+                {% if request.user.is_staff %}
                     <a href="{% url 'updateproduct' product.id %}">Оновити</a>
                     <a href="{% url 'deleteproduct' product.id %}">Видалити</a>
                 {% endif %}
