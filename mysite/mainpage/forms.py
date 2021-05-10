@@ -6,6 +6,7 @@ from django.forms import ModelForm,TextInput
 from django.utils import timezone
 
 
+
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(label="Ім'я користувача", widget=forms.TextInput(attrs={'placeholder':"Ім'я користувача"}))
     password1 = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={'placeholder':'Пароль'}))
@@ -25,7 +26,7 @@ class ProductsForm(ModelForm):
     name_product = forms.CharField(label=False,widget=forms.TextInput(attrs={'placeholder': "Назва"}))
     price_product = forms.IntegerField(label=False, widget=forms.NumberInput(attrs={'placeholder': "Ціна"}))
     about_product = forms.CharField(label=False, widget=forms.Textarea(attrs={'placeholder': "Про товар"}))
-    # date = forms.DateField(label=False, widget=forms.DateInput(attrs={'type' :"date" ,'placeholder': "Дата"}))
+
 
     class Meta:
         model = Products

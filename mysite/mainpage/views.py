@@ -5,6 +5,7 @@ from .forms import ProductsForm
 from .forms import UserRegisterForm,UserLoginForm
 from django.contrib import messages
 from django.contrib.auth import login,logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def mainpage(request):
@@ -51,6 +52,7 @@ def createproduct(request):
         if request.method == 'POST':
             form = ProductsForm(data=request.POST)
             if form.is_valid():
+                form.instance.author = request.user
                 form.save()
                 return redirect('mainpage')
         else:
