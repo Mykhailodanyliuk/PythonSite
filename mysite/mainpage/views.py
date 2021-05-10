@@ -48,7 +48,7 @@ def user_logout(request):
     return redirect('mainpage')
 
 def createproduct(request):
-    if request.user.is_authenticated:
+    if request.user.is_staff:
         if request.method == 'POST':
             form = ProductsForm(data=request.POST)
             if form.is_valid():
@@ -60,25 +60,31 @@ def createproduct(request):
         data = {'form': form}
         return render(request,'mainpage/createproduct.html',data)
     else:
-        return redirect('registration')
+        return redirect('mainpage')
 
 def updateproduct(request,pk):
-    product = Products.objects.get(id=pk)
-    form = ProductsForm(instance=product)
-    if request.method == 'POST':
-        form = ProductsForm(request.POST, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+    if request.user.is_authenticated:
+        product = Products.objects.get(id=pk)
+        form = ProductsForm(instance=product)
+        if request.method == 'POST':
+            form = ProductsForm(request.POST, instance=product)
+            if form.is_valid():
+                form.save()
+                return redirect('/')
 
-    context = {'form':form}
-    return render(request,'mainpage/updateproduct.html',context)
+        context = {'form':form}
+        return render(request,'mainpage/updateproduct.html',context)
+    else:
+        return redirect('registration')
 
 def deleteproduct(request,pk):
-    product = Products.objects.get(id=pk)
-    if request.method == 'POST':
-        product.delete()
-        return redirect('/')
-    context = {'item': product}
-    return render(request, 'mainpage/deleteproduct.html', context)
+    if request.user.is_authenticated:
+        product = Products.objects.get(id=pk)
+        if request.method == 'POST':
+            product.delete()
+            return redirect('/')
+        context = {'item': product}
+        return render(request, 'mainpage/deleteproduct.html', context)
+    else:
+        return redirect('registration')
 
