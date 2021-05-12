@@ -1,6 +1,7 @@
 {% extends 'mainpage/layout.html' %}
 
 {% load static %}
+{% load auth_extras %}
 
 
 {% block title %}
@@ -22,7 +23,7 @@
                 <div  class="nav-item">
                     <form  method="post">
                         <a class="btn btn-outline-success me-2" href="{% url 'user_logout' %}" >Вийти</a>
-                        {% if request.user.is_staff %}
+                        {% if request.user.is_staff or request.user|has_group:"Sellers" %}
                             <a class="btn btn-outline-success me-2" href="{% url 'createproduct' %}">Добавити товар</a>
                         {% endif %}
                         <a class="btn btn-danger" >{{ user.username }}</a>

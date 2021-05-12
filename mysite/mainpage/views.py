@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .models import Products
 from django.http import HttpResponse
@@ -6,6 +7,8 @@ from .forms import UserRegisterForm,UserLoginForm
 from django.contrib import messages
 from django.contrib.auth import login,logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from .templatetags.auth_extras import has_group
 
 
 def mainpage(request):
@@ -48,7 +51,7 @@ def user_logout(request):
     return redirect('mainpage')
 
 def createproduct(request):
-    if request.user.is_staff:
+    if request.user.is_staff or has_group(request.user,'Sellers'):
         if request.method == 'POST':
             form = ProductsForm(data=request.POST)
             if form.is_valid():
